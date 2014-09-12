@@ -12,7 +12,7 @@ namespace erdiko\payments\controllers;
 /**
  * Example Controller Class
  */
-class Example extends \erdiko\core\Controller
+class Payments extends \erdiko\core\Controller
 {
 	/** Before */
 	public function _before()
@@ -50,27 +50,27 @@ class Example extends \erdiko\core\Controller
 		$this->addView('examples/index');
 	}
 
-	/**
-	 * Drupal example
-	 */
-	public function getNode()
-	{
-		$node = new \erdiko\drupal\models\Node;
-		$post = $node->getNode(1);
+	// /**
+	//  * Drupal example
+	//  */
+	// public function getNode()
+	// {
+	// 	$node = new \erdiko\drupal\models\Node;
+	// 	$post = $node->getNode(1);
 
-		$content = \drupal_render(\node_view($post));
-		$content .= "<pre>".print_r($post, true)."</pre>";
+	// 	$content = \drupal_render(\node_view($post));
+	// 	$content .= "<pre>".print_r($post, true)."</pre>";
 
-		$this->setContent( $content );
-	}
+	// 	$this->setContent( $content );
+	// }
 
-	public function getView($viewName, $data = NULL, $templateRootFolder = NULL)
-	{
-		$view = new \erdiko\drupal\models\View;
-		$nodes = $view->getView("demo_view", "page");
+	// public function getView($viewName, $data = NULL, $templateRootFolder = NULL)
+	// {
+	// 	$view = new \erdiko\drupal\models\View;
+	// 	$nodes = $view->getView("demo_view", "page");
 
-		$this->setContent( $nodes );
-	}
+	// 	$this->setContent( $nodes );
+	// }
 
 	/**
 	 * Get Braintree
@@ -101,9 +101,13 @@ class Example extends \erdiko\core\Controller
 		//$this->setTitle('Braintree');
 		//$this->setContent( $this->getLayout('braintree', null) );
 
-		$view = new \erdiko\payments\models\View;
-		$nodes = $view->getView("braintree", "page");
-		$this->setContent( $nodes );
+		$this->setTitle('Braintree');
+
+		// Set columns directly using a layout
+		$columns = array(
+			'one' => $this->getView('payments/braintree', null, dirname(__DIR__)),
+		);
+		$this->setContent( $this->getLayout('1column', $columns) );
 	}
 
 	public function postBraintree()
