@@ -1,0 +1,23 @@
+{
+    "name":"erdiko/payments",
+    "description": "Erdiko Payments package",
+    "keywords": ["erdiko", "erdiko-payments", "erdiko package"],
+    "homepage": "http://erdiko.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arroyo Labs",
+            "email": "info@arroyolabs.com"
+        }
+    ],
+    "require": {
+        "braintree/braintree_php" : "2.30.0"
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "minimum-stability": "dev"
+    },
+     "autoload": {
+        "psr-0": { "erdiko\\payments": "src/" }
+    }
+}
