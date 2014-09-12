@@ -64,7 +64,7 @@ class Example extends \erdiko\core\Controller
 		$this->setContent( $content );
 	}
 
-	public function getView()
+	public function getView($viewName, $data = NULL, $templateRootFolder = NULL)
 	{
 		$view = new \erdiko\drupal\models\View;
 		$nodes = $view->getView("demo_view", "page");
@@ -98,8 +98,12 @@ class Example extends \erdiko\core\Controller
 
 		//var_dump($clientToken);
 
-		$this->setTitle('Braintree');
-		$this->setContent( $this->getLayout('braintree', null) );
+		//$this->setTitle('Braintree');
+		//$this->setContent( $this->getLayout('braintree', null) );
+
+		$view = new \erdiko\payments\models\View;
+		$nodes = $view->getView("braintree", "page");
+		$this->setContent( $nodes );
 	}
 
 	public function postBraintree()
